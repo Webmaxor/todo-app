@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "pguser",
+    "password": "password",
+    "database": "todoapp",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
