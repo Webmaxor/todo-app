@@ -35,6 +35,7 @@ EOF
 - Go to `./backend` directory
 - Run `yarn` or `npm install`
 - Run `sequelize db:migrate` to migrate Todos and Subtasks schema
+- (Optional) Run `sequelize db:seed:all` to add demo tasks
 - Run `yarn dev`
 
-If everything go smoothly, it starts http server on 3000 port.
+It starts http server on 3000 port if everything go smoothly.
