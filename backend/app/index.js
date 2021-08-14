@@ -3,6 +3,7 @@ const http = require("http");
 const { json: jsonBodyParser } = require("body-parser");
 const config = require("./config");
 const todoApiRouter = require("./api/todo");
+const subtaskApiRouter = require("./api/subtask");
 
 async function init() {
   const app = express();
@@ -15,6 +16,7 @@ async function init() {
   );
 
   app.use("/api/v1/todo", todoApiRouter());
+  app.use("/api/v1/sub-task", subtaskApiRouter());
 
   server.listen(config.port, () => {
     console.log(`Started http server on port ${server.address().port}`);
