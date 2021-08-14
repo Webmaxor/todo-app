@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.Todo.belongsTo(models.Subtask);
+      models.Subtask.belongsTo(models.Todo, { foreignKey: "todoId" });
     }
   }
   Subtask.init(
