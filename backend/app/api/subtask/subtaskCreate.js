@@ -20,11 +20,7 @@ module.exports.subtaskCreate = async ({ body }, res) => {
   const task = await Todo.findOne({ where: { id: todoId } });
 
   if (!task) {
-    res.status(400).json({
-      err: {
-        message: "Task not found.",
-      },
-    });
+    res.status(400).send("Task not found.");
     return;
   }
 

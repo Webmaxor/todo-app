@@ -20,6 +20,7 @@ if (config.use_env_variable) {
     dbConfig.password,
     {
       dialect: dbConfig.dialect,
+      logging: false,
     }
   );
 }

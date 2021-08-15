@@ -23,11 +23,7 @@ module.exports.subtaskUpdate = async ({ body, params }, res) => {
   const subtask = await Subtask.findOne({ where: { id } });
 
   if (!subtask) {
-    res.status(400).json({
-      err: {
-        message: "Subtask not found.",
-      },
-    });
+    res.status(400).send("Subtask not found.");
     return;
   }
 

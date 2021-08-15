@@ -1,6 +1,6 @@
 {
   "extends": ["airbnb-base", "prettier"],
-  "plugins": ["cflint"],
+  "plugins": ["cflint", "jest"],
   "root": true,
   "rules": {
     "cflint/no-substr": 1,
@@ -21,7 +21,12 @@
     "no-unused-vars": ["error", { "args": "none" }],
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "max-classes-per-file": ["error", 2]
+    "max-classes-per-file": ["error", 2],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
   "overrides": [
     {
@@ -32,6 +37,7 @@
     }
   ],
   "env": {
-    "node": true
+    "node": true,
+    "jest/globals": true
   }
 }

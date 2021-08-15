@@ -5,5 +5,12 @@
     "database": "todoapp",
     "host": "localhost",
     "dialect": "postgres"
+  },
+  "test": {
+    "username": "pguser",
+    "password": "password",
+    "database": "todoapp",
+    "host": "localhost",
+    "dialect": "postgres"
   }
 }
