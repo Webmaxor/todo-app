@@ -8,7 +8,10 @@ const { Todo, Subtask } = require("../../models");
  * @param {import('express').Response} res
  */
 async function todoIndex(req, res) {
-  const tasks = await Todo.findAll({ include: Subtask });
+  const tasks = await Todo.findAll({
+    include: Subtask,
+    order: [["createdAt", "DESC"]],
+  });
   res.json({
     results: tasks,
     total: tasks.length,
