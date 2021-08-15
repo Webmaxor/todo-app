@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import TaskRow from './TaskRow';
 
-import { useTasks } from '../../api/todo';
+import { useManageTasks, useTasks } from '../../api/todo';
 
 const FeedWrapper = styled.div`
   margin: 15px 0 60px;
@@ -15,15 +15,15 @@ const TasksFeed = () => {
   const { data = DEFAULT_RESULTS, isLoading } = useTasks();
   const { results } = data;
 
-  const onStatusUpdate = useCallback((item, type) => {
-    if (type === 'task') {
-      console.log(item);
-    }
+  const { updateStatus } = useManageTasks();
 
-    if (type === 'subTask') {
-      console.log(item);
-    }
-  }, []);
+  const onStatusUpdate = useCallback(
+    (item) => {
+      const status = item.status === 'pending' ? 'completed' : 'pending';
+      updateStatus(item.id, status, item.todoId);
+    },
+    [updateStatus],
+  );
 
   return (
     <FeedWrapper>

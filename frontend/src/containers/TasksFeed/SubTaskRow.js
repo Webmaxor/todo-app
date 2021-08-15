@@ -20,7 +20,7 @@ const SubTaskRow = ({ subTask, onStatusUpdate }) => {
         label={subTask.title}
         checked={subTask.status === 'completed'}
         id={`subtask_${subTask.id}`}
-        onChange={onStatusUpdate.bind(null, subTask, 'subTask')}
+        onChange={onStatusUpdate.bind(null, subTask)}
       />
     </StyledRow>
   );

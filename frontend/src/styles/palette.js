@@ -4,6 +4,7 @@ const palette = {
   chiffon: '#F8F8F8',
   clouds: '#F4F4F4',
   silver: '#C8C8C8',
+  dusty: '#9B9B9B',
 
   sky: '#2D79D1',
   clearsky: '#4A90E2',

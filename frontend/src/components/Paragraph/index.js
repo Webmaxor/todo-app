@@ -6,7 +6,8 @@ const Paragraph = styled.p`
   text-align: ${prop('$textAlign', 'left')};
   margin-top: ${prop('$marginTop', '0')};
   margin-bottom: ${prop('$marginBottom', '8px')};
-  font-size: ${prop('$fontSize', 'inherit')}
+  font-size: ${prop('$fontSize', 'inherit')};
+  color: ${prop('$color', 'inherit')};
 `;
 
 Paragraph.propTypes = {
