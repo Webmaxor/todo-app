@@ -5,6 +5,7 @@ import 'normalize.css';
 import Container from './components/Container';
 import Paragraph from './components/Paragraph';
 import TaskForm from './containers/TaskForm';
+import TasksFeed from './containers/TasksFeed';
 
 const client = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ const App = () => (
         Todo App
       </Paragraph>
       <TaskForm />
+      <TasksFeed />
     </Container>
   </QueryClientProvider>
 );

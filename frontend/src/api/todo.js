@@ -1,10 +1,19 @@
 import fetch from 'cross-fetch';
 import { useCallback, useMemo } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 
 import useQueryInvalidator from '../hooks/useQueryInvalidator';
 import urls from '../config/urls';
 import Read from './keys';
+
+export const getTasks = async () => {
+  const res = await fetch(`${urls.apiUrl}/api/v1/todo/index`);
+  return res.json();
+};
+
+export const useTasks = () => {
+  return useQuery(Read.Tasks(), getTasks);
+};
 
 export const createTask = async (fields) => {
   const res = await fetch(`${urls.apiUrl}/api/v1/todo/create`, {
