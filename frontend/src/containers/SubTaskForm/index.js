@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -10,6 +11,7 @@ import { useManageTasks } from '../../api/todo';
 const FormWrapper = styled.div`
   display: flex;
   align-items: flex-start;
+  margin-bottom: 10px;
 
   .input-wrapper {
     flex: 0 1 80%;
@@ -29,17 +31,17 @@ const initialValues = {
   title: '',
 };
 
-const TaskForm = () => {
-  const { createTask } = useManageTasks();
+const SubTaskForm = ({ todoId }) => {
+  const { createSubTask } = useManageTasks();
 
   const handleSave = useCallback(
     (values, { setSubmitting, resetForm }) => {
-      createTask(values, () => {
+      createSubTask({ ...values, todo_id: todoId }, () => {
         setSubmitting(false);
         resetForm();
       });
     },
-    [createTask],
+    [createSubTask, todoId],
   );
 
   return (
@@ -54,12 +56,12 @@ const TaskForm = () => {
         <Form>
           <FormWrapper>
             <TextField
-              placeholder="What to do?"
+              placeholder="What are the steps?"
               type="text"
               maxLength={60}
               name="title"
             />
-            <Button type="submit" title="New List" disabled={isSubmitting} />
+            <Button type="submit" title="New Step" disabled={isSubmitting} />
           </FormWrapper>
         </Form>
       )}
@@ -67,4 +69,8 @@ const TaskForm = () => {
   );
 };
 
-export default TaskForm;
+SubTaskForm.propTypes = {
+  todoId: PropTypes.number,
+};
+
+export default SubTaskForm;

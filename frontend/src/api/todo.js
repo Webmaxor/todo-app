@@ -39,6 +39,17 @@ export const createTask = async (fields) => {
   return res.json();
 };
 
+export const createSubTask = async (fields) => {
+  const res = await fetch(`${urls.apiUrl}/api/v1/sub-task/create`, {
+    method: 'post',
+    body: JSON.stringify(fields),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res.json();
+};
+
 export const useManageTasks = () => {
   const mutationFn = ({ mutationFn }) => mutationFn;
   const invalidator = useQueryInvalidator();
@@ -143,11 +154,39 @@ export const useManageTasks = () => {
     [mutate],
   );
 
+  const onCreateSubTask = useCallback(
+    (fields, onComplete) => {
+      const func = createSubTask(fields);
+      const onSuccess = (response, invalidator) => {
+        const transaction = invalidator.mutate(Read.Tasks(), null, (data) => {
+          const index = data.results.findIndex(
+            (item) => item.id === fields.todo_id,
+          );
+          if (data.results[index]) {
+            const clone = cloneDeep(data);
+            clone.results[index].Subtasks.push(response);
+            clone.results[index].status = 'pending';
+            return clone;
+          }
+          return null;
+        });
+        transaction.commit();
+      };
+      mutate({
+        mutationFn: func,
+        onSuccess,
+        onComplete,
+      });
+    },
+    [mutate],
+  );
+
   return useMemo(
     () => ({
       updateStatus: onUpdateStatus,
       createTask: onCreateTask,
+      createSubTask: onCreateSubTask,
     }),
-    [onUpdateStatus, onCreateTask],
+    [onUpdateStatus, onCreateTask, onCreateSubTask],
   );
 };

@@ -7,6 +7,7 @@ import SubTaskRow from './SubTaskRow';
 
 import palette from '../../styles/palette';
 import Paragraph from '../../components/Paragraph';
+import SubTaskForm from '../SubTaskForm';
 
 const StyledRow = styled.div`
   .task-wrapper {
@@ -73,32 +74,34 @@ const TaskRow = ({ task, onStatusUpdate }) => {
           onChange={onStatusUpdate.bind(null, task)}
         />
 
-        {subTasksCount > 0 && (
-          <Paragraph
-            $color={palette.dusty}
-            $fontSize="14px"
-            $marginTop="4px"
-            $marginBottom="0"
-            onClick={accordionToggler}
-          >
-            {completedSubTasksCount} of {subTasksCount} completed &nbsp;
-            <Arrow
-              onClick={accordionToggler}
-              className={isOpen ? 'open' : ''}
-            />
-          </Paragraph>
-        )}
+        <Paragraph
+          $color={palette.dusty}
+          $fontSize="14px"
+          $marginTop="4px"
+          $marginBottom="0"
+          onClick={accordionToggler}
+          $textAlign="right"
+        >
+          {subTasksCount > 0 && (
+            <>
+              {completedSubTasksCount} of {subTasksCount} completed &nbsp;
+            </>
+          )}
+          <Arrow onClick={accordionToggler} className={isOpen ? 'open' : ''} />
+        </Paragraph>
       </div>
 
-      {isOpen && subTasksCount > 0 && (
+      {isOpen && (
         <div className="sub-tasks">
-          {subTasks.map((subTask) => (
-            <SubTaskRow
-              key={`subTask:${subTask.id}`}
-              subTask={subTask}
-              onStatusUpdate={onStatusUpdate}
-            />
-          ))}
+          {subTasksCount > 0 &&
+            subTasks.map((subTask) => (
+              <SubTaskRow
+                key={`subTask:${subTask.id}`}
+                subTask={subTask}
+                onStatusUpdate={onStatusUpdate}
+              />
+            ))}
+          <SubTaskForm todoId={task.id} />
         </div>
       )}
     </StyledRow>
