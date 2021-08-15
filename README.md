@@ -38,4 +38,12 @@ EOF
 - (Optional) Run `sequelize db:seed:all` to add demo tasks
 - Run `yarn dev`
 
-It starts http server on 3000 port if everything go smoothly.
+It starts http server on 3080 port if everything go smoothly.
+
+## Frontend
+
+### Run backend app
+
+- Go to `./frontend` directory
+- Run `yarn` or `npm install`
+- Run `yarn start`
