@@ -10,7 +10,10 @@ const { Todo, Subtask } = require("../../models");
 async function todoIndex(req, res) {
   const tasks = await Todo.findAll({
     include: Subtask,
-    order: [["createdAt", "DESC"]],
+    order: [
+      ["createdAt", "DESC"],
+      [Subtask, "createdAt", "ASC"],
+    ],
   });
   res.json({
     results: tasks,
