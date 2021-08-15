@@ -12,7 +12,8 @@
       "browser": true,
       "commonjs": true,
       "es6": true,
-      "node": true
+      "node": true,
+      "jest/globals": true
     },
     "parserOptions": {
       "ecmaVersion": 2018,
@@ -26,12 +27,17 @@
         "version": "detect"
       }
     },
-    "plugins": [],
+    "plugins": ["jest"],
     "rules": {
       "react/prop-types": "off",
       "react/display-name": "warn",
       "react/no-unescaped-entities": "warn",
       "react/jsx-no-duplicate-props": "warn",
-      "import/no-unresolved": [2, { "ignore": ["\\.(png|jpg|svg)\\?.+$"] }]
+      "import/no-unresolved": [2, { "ignore": ["\\.(png|jpg|svg)\\?.+$"] }],
+      "jest/no-disabled-tests": "warn",
+      "jest/no-focused-tests": "error",
+      "jest/no-identical-title": "error",
+      "jest/prefer-to-have-length": "warn",
+      "jest/valid-expect": "error"
     }
   }
