@@ -1,4 +1,4 @@
-# TODO App onboarding
+# A simple TODO app by using NodeJS (Express, PostgreSQL, Sequelize) and React (Hooks, React-query).
 
 ## Backend
 
